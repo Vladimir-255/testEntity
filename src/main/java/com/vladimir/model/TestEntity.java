@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
+@Table(name = "test_entity")
 public class TestEntity {
     @Id
     @GeneratedValue
@@ -11,51 +12,44 @@ public class TestEntity {
     private UUID id;
 
     @Column
-    private UUID documentId;
+    @OneToOne
+    private Document document;
 
-    @Column
+    @Column(name = "document_date")
     private String documentDate;
 
     @Column
-    private UUID dictionaryValueId;
+    @OneToOne
+    private Dictionary dictionary;
 
-    @Column
-    private UUID getDictionaryValueName;
-
-    @Column
+    @Column(name = "sort_order")
     private String sortOrder;
 
     @Column
-    private UUID testId;
-
-    @Column
-    private String testName;
+    @OneToOne
+    private Test test;
 
     public TestEntity() {
     }
 
-
-    public TestEntity(UUID documentId, String documentDate, UUID dictionaryValueId, UUID getDictionaryValueName, String sortOrder, UUID testId, String testName) {
-        this.documentId = documentId;
+    public TestEntity(Document document, String documentDate, Dictionary dictionary, String sortOrder, Test test) {
+        this.document = document;
         this.documentDate = documentDate;
-        this.dictionaryValueId = dictionaryValueId;
-        this.getDictionaryValueName = getDictionaryValueName;
+        this.dictionary = dictionary;
         this.sortOrder = sortOrder;
-        this.testId = testId;
-        this.testName = testName;
+        this.test = test;
     }
 
     public UUID getId() {
         return id;
     }
 
-
-    public UUID getDocumentId() {
-        return documentId;
+    public Document getDocument() {
+        return document;
     }
 
-    public void setDocumentId(UUID documentId) {
-        this.documentId = documentId;
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
     public String getDocumentDate() {
@@ -66,20 +60,12 @@ public class TestEntity {
         this.documentDate = documentDate;
     }
 
-    public UUID getDictionaryValueId() {
-        return dictionaryValueId;
+    public Dictionary getDictionary() {
+        return dictionary;
     }
 
-    public void setDictionaryValueId(UUID dictionaryValueId) {
-        this.dictionaryValueId = dictionaryValueId;
-    }
-
-    public UUID getGetDictionaryValueName() {
-        return getDictionaryValueName;
-    }
-
-    public void setGetDictionaryValueName(UUID getDictionaryValueName) {
-        this.getDictionaryValueName = getDictionaryValueName;
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 
     public String getSortOrder() {
@@ -90,19 +76,11 @@ public class TestEntity {
         this.sortOrder = sortOrder;
     }
 
-    public UUID getTestId() {
-        return testId;
+    public Test getTest() {
+        return test;
     }
 
-    public void setTestId(UUID testId) {
-        this.testId = testId;
-    }
-
-    public String getTestName() {
-        return testName;
-    }
-
-    public void setTestName(String testName) {
-        this.testName = testName;
+    public void setTest(Test test) {
+        this.test = test;
     }
 }
